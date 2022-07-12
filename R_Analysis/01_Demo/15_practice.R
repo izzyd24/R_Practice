@@ -57,3 +57,9 @@ plt <- ggplot(mpg_long,aes(x=manufacturer,y=Rating,color=MPG_Type))
 plt + geom_boxplot() + facet_wrap(vars(MPG_Type)) +
 # add boxplot with labels, 45 degree rotation
 theme(axis.text.x=element_text(angle=45,hjust=1),legend.position = "none") + xlab("Manufacturer")
+
+# qual test for normality
+ggplot(mtcars,aes(x=wt)) + geom_density()
+
+# quant test for normality
+shapiro.test(mtcars$wt)
