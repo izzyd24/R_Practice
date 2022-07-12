@@ -1,0 +1,6 @@
+# boxplot
+# import the dataset into ggplot2
+plt <- ggplot(mpg, aes(y=hwy))
+
+# plot it as boxplot
+plt + geom_boxplot()
