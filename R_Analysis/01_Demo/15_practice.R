@@ -63,3 +63,36 @@ ggplot(mtcars,aes(x=wt)) + geom_density()
 
 # quant test for normality
 shapiro.test(mtcars$wt)
+
+# random sample practice
+# import the dataset
+population_table <- read.csv('used_car_data.csv',check.names = F,stringsAsFactors = F)
+# import into ggplot
+plt <- ggplot(population_table,aes(x=log10(Miles_Driven)))
+# plot with density
+plt + geom_density()
+
+# once we make the density plot, then we do the sample
+sample_table <- population_table %>% sample_n(50)
+plt <- ggplot(sample_table,aes(x=log10(Miles_Driven)))
+plt + geom_density()
+
+# compare sample means in t test
+t.test(log10(sample_table$Miles_Driven),mu=mean(log10(population_table$Miles_Driven)))
+
+# paired t test example with mpg.csv 
+# import the csv
+mpg_data <- read.csv('mpg_modified.csv')
+# select data pts year of 1999
+mpg_1999 <- mpg_data %>% filter(year==1999)
+# select data pts year of 2008
+mpg_2008 <- mpg_data %>% filter(year==2008)
+# compare mean difference in the two samples
+t.test(mpg_1999$hwy,mpg_2008$hwy,paired = T)
+
+# anova, but first place filter on columns of mtcars dataset
+mtcars_filt <- mtcars[,c("hp","cyl")]
+# convert numeric column to factor
+mtcars_filt$cyl <- factor(mtcars_filt$cyl)
+# fun the anova, compare means across multiple levels
+summary(aov(hp ~ cyl,data=mtcars_filt))
