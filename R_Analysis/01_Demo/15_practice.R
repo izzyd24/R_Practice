@@ -77,6 +77,8 @@ sample_table <- population_table %>% sample_n(50)
 plt <- ggplot(sample_table,aes(x=log10(Miles_Driven)))
 plt + geom_density()
 
+
+
 # compare sample means in t test
 t.test(log10(sample_table$Miles_Driven),mu=mean(log10(population_table$Miles_Driven)))
 
@@ -96,3 +98,5 @@ mtcars_filt <- mtcars[,c("hp","cyl")]
 mtcars_filt$cyl <- factor(mtcars_filt$cyl)
 # fun the anova, compare means across multiple levels
 summary(aov(hp ~ cyl,data=mtcars_filt))
+
+
