@@ -29,7 +29,7 @@ summary(lm(Jobs.page.views..total.~Total.page.views..total., li_visitors_data))
 
 # shows that .72 r square value; or 72% of variability of dependent
 # ... is explained by linear model
-# .72 = high level of correlation that jobs views affects total views
+# .72 = high level of correlation that jobs views (x) affects total views (y)
 # p-value < sig level of 0.05%; sufficient evidence to reject null, ho
 # the slope of model is not zero!
 
@@ -38,4 +38,6 @@ link_plot <- ggplot(li_visitors_data, aes(x=Total.page.views..total., y=Jobs.pag
   geom_point(col="steelblue", size=2) +
   geom_smooth(method="lm", colour="red") +
   labs(title="Jobs Page Views Impact on Total Page Views", y="Total Page Views", x="Job Page Views")
+  st
 plot(link_plot) 
+
